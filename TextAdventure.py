@@ -20,7 +20,7 @@ def typewriter(message,s1,s2):
 
 #FIRST MENU
 def firstMenu():
-    print("Make a numeric selection: ")
+    print("Make a numeric selection:  ")
     print("[1] Start")
     print("[2] ???")
     print("[3] ???")
