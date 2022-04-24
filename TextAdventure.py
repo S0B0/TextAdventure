@@ -18,6 +18,11 @@ def typewriter(message,s1,s2):
             time.sleep(s2)
 #os.system("cls") 
 
+def characterCreation():
+    typewriter("Choose a name: ",)
+    name = input("\n>:")
+    return name
+
 #FIRST MENU
 def firstMenu():
     print("Make a numeric selection:  ")
@@ -26,18 +31,35 @@ def firstMenu():
     print("[3] ???")
     print("[0] EXIT")
 
+def interactRabbit():
+     typewriter("    \n(Rabbit) :\n\
+    -O I welcome thee upon thy temple for which faith must be the key.\n\
+Answer minth riddles and I shall grant you entrance. \n [riddles] \n [leave] \n",0.03,0.2)
+     firstInteract = input("\n>:")
+     if firstInteract == "riddles":
+        riddles()
+     elif firstInteract == "who are you":
+         typewriter("I am the guardian of thy temple.",0.03,0.2)
+     elif firstInteract == "leave":
+         typewriter("You chose to leave the path. Rot reached your chest and neck. You collapse... The pilgrimage ends... ",0.03,0.2)  
+         finalDecision = input("\n>:") 
+     else:
+         typewriter("INVALID INPUT. TRY AGAIN\n",0.03,0.2)
+         interactRabbit()
 # RABBIT RIDDLES FUNCTION ~ USED ON THE LEAVE PATH
 def riddles():
-    typewriter("            (Rabbit) :\n\
-				-O I welcome thee upon thy temple for which fate must be the key.\n\
-				Answer minth riddles and I shall grant you entrance.\n",0.03,0.2)
+   
     typewriter(" \n                                 'Spends all  life in but a cage\n\
 				 Brings us joys yet it can rage\n\
 				 Behold thee,the restless sage!'\n \n                                 What am I? \n>: ",0.03,0.2)
     firstRiddleAnswer = input()
     if firstRiddleAnswer == "heart" or firstRiddleAnswer == "Heart" or firstRiddleAnswer == "HEART":
-        typewriter("        (Rabbit) : \n\
-				-Wise pilgrim you are quite bold yet still I won't start to fold\n",0.03,0.2)
+        typewriter("    (Rabbit) : \n\
+    -You are quite bold yet still I won't start to fold\n",0.03,0.2)
+    
+    else :
+        typewriter("INVALID INPUT.TRY AGAIN\n",0.03,0.2)
+        riddles()
 
 # START GAME FUNCTION ~ USED IN THE MAIN
 def startGame():
@@ -51,15 +73,15 @@ def startGame():
         elif uSure == "y" or uSure == "Y"or uSure == "yes" or uSure == "Yes" or uSure == "YES":
             print("FAREWELL...")
     elif start =="y" or start == "Y" or start == "yes" or start == "Yes" or start == "YES":
-        typewriter("\n             ## PROLOGUE ##\n",0.03,0.2)
+        typewriter("\n            ====== ## PROLOGUE ## ======\n",0.03,0.2)
         prologue()
 
 # PROLOGUE FUNCTION USED IN THE START GAME 
 def prologue():
-    typewriter("              You walk the path of the pilgrim,in search of truth.\n\
-            The unforgiving sun is ever watching,your feet are heavy and your lips dry.\n\
-            You approach a lonely tree in this vast desert . It's shade is tempting. \n\
-            What do you do? \n>: ",0.03,0.2)
+    typewriter("You walk the path of the pilgrim,in search of truth.\n\
+The unforgiving sun is ever watching,your feet are heavy and your lips dry.\n\
+You approach a lonely tree in this vast desert . It's shade is tempting. \n\
+What do you do? \n [rest] \n [leave]\n>: ",0.03,0.2)
 
     firstPath = input() 
     if firstPath == "rest" or firstPath == "relax" or firstPath == "sit" or firstPath == "stay":
@@ -67,16 +89,16 @@ def prologue():
     elif firstPath == "leave" or firstPath == "go away" or firstPath == "keep moving":
         leavePath()
     else:
-        print("INVALID INPUT.Try again")
+        print("INVALID INPUT.Try again\n")
         prologue()
         
 
 # REST PATH FUNCTION ~ USED IN THE PROLOGUE ~ 
 def restPath():
-    typewriter("            As you approach the tree it's shade embraces you\n\
-            and a sudden breeze lifts the weight of your travel.\n\
-            As you sit down,you begin to drift in and out of conciousness.\n\
-            This tree seems special.What do you do? \n>: ",0.03,0.2)
+    typewriter("As you approach the tree it's shade embraces you\n\
+and a sudden breeze lifts the weight of your travel.\n\
+As you sit down,you begin to drift in and out of conciousness.\n\
+This tree seems special.What do you do? \n [focus] \n [wake up] \n>: ",0.03,0.2)
     secondPath = input()
     if secondPath == "focus" or secondPath == "look" or secondPath == "observe":
         print("WATER PATH")
@@ -85,15 +107,24 @@ def restPath():
         print("LEAVE PATH")
         #leavePath()
     else:
-        print("INVALID INPUT.Try again")
+        print("INVALID INPUT.Try again\n")
+        restPath()
 
 def leavePath():
-    typewriter("            You are devouted to the road. \n\
-		The sun is slowly setting and it's piercing rays are less heavier.\n\
-		Your eyes begin to reflect the first blinks of the stars.\n\
-		Upon a rocky structure there lies a temple.\n\
-		A rabbit guards its door.\n",0.03,0.2)
-    riddles()
+    typewriter("You are devouted to the road. \n\
+The sun is slowly setting and it's piercing rays are less heavier.\n\
+Your eyes begin to reflect the first blinks of the stars.\n\
+Upon a rocky structure there lies a temple.\n\
+A rabbit guards its door. \n [talk] \n",0.03,0.2)
+    interact = input("\n>:")
+    if interact == "talk":
+        typewriter("You greet the rabbit...",0.03,0.2)
+        interactRabbit()
+    else:
+        typewriter("INVALID INPUT.TRY AGAIN",0.03,0.2)
+        leavePath()
+
+
 
 
 ## MAIN ##
@@ -113,7 +144,7 @@ option = int(input(">:"))
 
 while option != 0:
     if option == 1:
-       leavePath()
+       startGame()
     elif option == 2:
         print("??")
     elif option == 3:
