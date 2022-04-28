@@ -5,6 +5,13 @@
 #   
 
 import sys,time,os
+from tkinter import N
+import colorama
+from colorama import Fore, Back, Style
+colorama.init(autoreset=True)
+
+
+
 
 #  Note : typewriter class is WIP
 def typewriter(message,s1,s2):
@@ -25,7 +32,7 @@ def characterCreation():
 
 #FIRST MENU
 def firstMenu():
-    print("Make a numeric selection:  ")
+    typewriter(Fore.YELLOW + "Make a numeric selection:  ",0.03,0.2)
     print("[1] Start")
     print("[2] ???")
     print("[3] ???")
@@ -81,7 +88,7 @@ def prologue():
     typewriter("You walk the path of the pilgrim,in search of truth.\n\
 The unforgiving sun is ever watching,your feet are heavy and your lips dry.\n\
 You approach a lonely tree in this vast desert . It's shade is tempting. \n\
-What do you do? \n [rest] \n [leave]\n>: ",0.03,0.2)
+What do you do?" + Fore.RED +"\n [rest] \n [leave]\n>: ",0.03,0.2)
 
     firstPath = input() 
     if firstPath == "rest" or firstPath == "relax" or firstPath == "sit" or firstPath == "stay":
@@ -115,7 +122,13 @@ def leavePath():
 The sun is slowly setting and it's piercing rays are less heavier.\n\
 Your eyes begin to reflect the first blinks of the stars.\n\
 Upon a rocky structure there lies a temple.\n\
-A rabbit guards its door. \n [talk] \n",0.03,0.2)
+A rabbit guards its door.",0.03,0.2)
+    typewriter("\n\
+   \        \n\
+    \ /\    \n\
+    ( )     \n\
+  .( o ).   \n\
+    "+ Fore.YELLOW + " \n [talk] \n ",0.03,0.2)
     interact = input("\n>:")
     if interact == "talk":
         typewriter("You greet the rabbit...",0.03,0.2)
