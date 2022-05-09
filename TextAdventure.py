@@ -79,6 +79,34 @@ def drawowl():
                         ~Y/v/vv..vv\v\Y~                         \n\
                          ^            ^",0.006,0.06)   
  
+
+def drawdemon():
+    typewriter("     \n\
+       v      v      \n\
+      / (   ) \      \n\
+      | (o o) |      \n\
+       \_\ /_/       \n\
+        | O |        \n\
+        |   | "     
+        ,0.006,0.06)
+    time.sleep(1)
+
+
+def drawdeath():
+    typewriter("\n            \n\
+               ..---..       \n\
+              /       \       \n\
+              |  RIP  |        \n\
+              |       |         \n\
+              |       |          \n\
+              |       |           \n\
+              |       |             \n\
+ \\\\\\\\\\\\\\\\\/////////////////"
+ ,0.006,0.06)
+    
+    
+    
+    
 def typewriter(message,s1,s2):
     for char in message:
         sys.stdout.write(char)
@@ -107,6 +135,7 @@ def save():
 def riddles(): 
     tries = 3
     while tries !=0:
+        clear()
         drawline()
         typewriter("spends all life in but a cage,\n\
 brings us joy yet still can rage \n\
@@ -120,13 +149,17 @@ behold thee,the restless sage!\n\
             break
         else:
             if tries == 3:
-                typewriter("(rabbit): -I will give you two more tries..\n",0.03,0.2)
+                typewriter("(rabbit): -I will give you two more tries..\n",0.03,1.5)
                 tries -= 1
             elif tries == 2:
-                typewriter("(rabbit): -I will give you one more try..\n",0.03,0.2)
+                typewriter("(rabbit): -I will give you one more try..\n",0.03,1.5)
                 tries -= 1
             elif tries == 1:
-                typewriter("(rabbit): -You failed to answer pilgrim, now your soul is mine! \n",0.03,0.2)   
+                typewriter("(rabbit): -You failed to answer pilgrim, now your soul is mine! \n",0.03,0.8)   
+                drawdemon()
+                clear()
+                drawdeath()
+                typewriter("\nYour pilgrimage ends here... You died..",0.03,0.2)
                 input("\n|enter|")
                 tries = 0
                 break    
@@ -335,5 +368,5 @@ while run:
             menu = True
             save()
         elif option == "1":
-           riddles()
-           # prologue()
+           #riddles()
+           prologue()
