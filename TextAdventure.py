@@ -1,19 +1,55 @@
-#   
-#   I am strong just like a steed
-#   When I fall I do not bleed
-#   Yet I die from those in ...?
-#   
-
 import sys,time,os
-from tkinter import N
-import colorama
-from colorama import Fore, Back, Style
-colorama.init(autoreset=True)
+
+from click import option
+#Ah, Lord, Lord, nobody's fault but mine
+run = True
+menu = True
+play = False
+rules = False
+
+HP = 10
+WILL = 6
+pos = 0
 
 
 
 
-#  Note : typewriter class is WIP
+def titlecard():
+    print()
+    print()
+    
+    print("<=======================-~oOxOo~-=======================>")
+    print("I                                                       I")
+    print("I               ~The tome of untold tales~              I")
+    print("I                    -=[ by S0B0 ]=-                    I")
+    print("I                                                       I")
+    print("<=======================-~oOxOo~-=======================>")
+    
+    print()
+    print()
+
+
+
+def rulepage():
+    print("   <=----------------------[ RULES ]-----------------------=>")
+    print("   |  If an option has a number near it, type that number.  |")
+    print("   |  If an option has no number near it,type the word in   |")
+    print("   |   the square brackets []                               |")
+    print("   |                                                        |")
+    print("   |   do not press any keys while the typewriter animation |")
+    print("   |   is playing                                           |")
+    print("   |                                                        |")
+    print("   |                                                        |")
+    print("   |                                                        |")
+    print("   |                                                        |")
+    print("   |                                                        |")
+    print("   |                                                        |")
+    print("   |                                                        |")
+    print("   <=----------------------[ RULES ]-----------------------=>             ")
+    
+ 
+ 
+ 
 def typewriter(message,s1,s2):
     for char in message:
         sys.stdout.write(char)
@@ -23,155 +59,202 @@ def typewriter(message,s1,s2):
             time.sleep(s1)
         else:
             time.sleep(s2)
-#os.system("cls") 
 
-def characterCreation():
-    typewriter("Choose a name: ",)
-    name = input("\n>:")
-    return name
+def clear():
+    os.system("cls")
 
-#FIRST MENU
-def firstMenu():
-    typewriter(Fore.YELLOW + "Make a numeric selection:  ",0.03,0.2)
-    print("[1] Start")
-    print("[2] ???")
-    print("[3] ???")
-    print("[0] EXIT")
 
-def interactRabbit():
-     typewriter("    \n(Rabbit) :\n\
-    -O I welcome thee upon thy temple for which faith must be the key.\n\
-Answer minth riddles and I shall grant you entrance. \n [riddles] \n [leave] \n",0.03,0.2)
-     firstInteract = input("\n>:")
-     if firstInteract == "riddles":
-        riddles()
-     elif firstInteract == "who are you":
-         typewriter("I am the guardian of thy temple.",0.03,0.2)
-     elif firstInteract == "leave":
-         typewriter("You chose to leave the path. Rot reached your chest and neck. You collapse... The pilgrimage ends... ",0.03,0.2)  
-         finalDecision = input("\n>:") 
-     else:
-         typewriter("INVALID INPUT. TRY AGAIN\n",0.03,0.2)
-         interactRabbit()
-# RABBIT RIDDLES FUNCTION ~ USED ON THE LEAVE PATH
-def riddles():
-   
-    typewriter(" \n                                 'Spends all  life in but a cage\n\
-				 Brings us joys yet it can rage\n\
-				 Behold thee,the restless sage!'\n \n                                 What am I? \n>: ",0.03,0.2)
-    firstRiddleAnswer = input()
-    if firstRiddleAnswer == "heart" or firstRiddleAnswer == "Heart" or firstRiddleAnswer == "HEART":
-        typewriter("    (Rabbit) : \n\
-    -You are quite bold yet still I won't start to fold\n",0.03,0.2)
+def drawline():
+    print(" <=============-~oOxOo~-=============>")
     
-    else :
-        typewriter("INVALID INPUT.TRY AGAIN\n",0.03,0.2)
-        riddles()
 
-# START GAME FUNCTION ~ USED IN THE MAIN
-def startGame():
-    typewriter("Would you like to start the game? (Y/N)\n>: ",0.03,0.2)
-    start = input() 
-    if start == "n" or start == "N"or start == "no" or start == "No" or start == "NO":
-        uSure = input("are you sure? (Y/N)\n>: ")
-        if uSure == "n" or uSure == "N"or uSure == "no" or uSure == "No" or uSure == "NO":
-            print("\n             ## PROLOGUE ##\n",0.03,0.2)
-            prologue()
-        elif uSure == "y" or uSure == "Y"or uSure == "yes" or uSure == "Yes" or uSure == "YES":
-            print("FAREWELL...")
-    elif start =="y" or start == "Y" or start == "yes" or start == "Yes" or start == "YES":
-        typewriter("\n            ====== ## PROLOGUE ## ======\n",0.03,0.2)
-        prologue()
-
-# PROLOGUE FUNCTION USED IN THE START GAME 
-def prologue():
-    typewriter("You walk the path of the pilgrim,in search of truth.\n\
-The unforgiving sun is ever watching,your feet are heavy and your lips dry.\n\
-You approach a lonely tree in this vast desert . It's shade is tempting. \n\
-What do you do?" + Fore.RED +"\n [rest] \n [leave]\n>: ",0.03,0.2)
-
-    firstPath = input() 
-    if firstPath == "rest" or firstPath == "relax" or firstPath == "sit" or firstPath == "stay":
-        restPath()
-    elif firstPath == "leave" or firstPath == "go away" or firstPath == "keep moving":
-        leavePath()
-    else:
-        print("INVALID INPUT.Try again\n")
-        prologue()
-        
-
-# REST PATH FUNCTION ~ USED IN THE PROLOGUE ~ 
-def restPath():
-    typewriter("As you approach the tree it's shade embraces you\n\
-and a sudden breeze lifts the weight of your travel.\n\
-As you sit down,you begin to drift in and out of conciousness.\n\
-This tree seems special.What do you do? \n [focus] \n [wake up] \n>: ",0.03,0.2)
-    secondPath = input()
-    if secondPath == "focus" or secondPath == "look" or secondPath == "observe":
-        print("WATER PATH")
-        #waterPath()
-    elif secondPath == "leave" or secondPath == "get up" or secondPath == "wake up":
-        print("LEAVE PATH")
-        #leavePath()
-    else:
-        print("INVALID INPUT.Try again\n")
-        restPath()
-
-def leavePath():
-    typewriter("You are devouted to the road. \n\
-The sun is slowly setting and it's piercing rays are less heavier.\n\
-Your eyes begin to reflect the first blinks of the stars.\n\
-Upon a rocky structure there lies a temple.\n\
-A rabbit guards its door.",0.03,0.2)
+def save():
+    list = [name,str(HP),str(WILL),str(pos)]
+    f = open("load.txt","w")
+    for item in list:
+        f.write(item + "\n")
+    f.close()
+ 
+def riddles():
+     print("RIDDLES")
+ 
+ 
+def rabbit(met_owl):
     typewriter("\n\
    \        \n\
     \ /\    \n\
     ( )     \n\
   .( o ).   \n\
-    "+ Fore.YELLOW + " \n [talk] \n ",0.03,0.2)
-    interact = input("\n>:")
-    if interact == "talk":
-        typewriter("You greet the rabbit...",0.03,0.2)
-        interactRabbit()
-    else:
-        typewriter("INVALID INPUT.TRY AGAIN",0.03,0.2)
-        leavePath()
-
-
-
-
-## MAIN ##
-print()
-print()
-print("    ~~###############################~~")
-print("     ~#                             #~")
-print("    ~~#         ~The road~          #~~")
-print("     ~#                             #~")
-print("    ~~###############################~~")
-print()
-print()
-
-
-firstMenu()
-option = int(input(">:"))
-
-while option != 0:
-    if option == 1:
-       startGame()
-    elif option == 2:
-        print("??")
-    elif option == 3:
-        print("??")
-    else:
-        print("Invalid Option")
-   
-    firstMenu()
-    #typewriter("\nMake numeric selection\n>:",0.03,0.2)
-    option = int(input(">:"))
+     \n ",0.03,0.2)
+    typewriter("    \n(Rabbit) :\n\
+    -O I welcome thee upon thy temple for which faith must be the key.\n\
+Answer minth riddles and I shall grant you entrance. \n [riddles] \n [talk]",0.03,0.2)
+    op = input("\n>: ")
+    if op == "riddles":
+        riddles()
+    elif op == "ask" and met_owl == False:
+        typewriter(f"\n({name}): - Who are you? \n")
+        typewriter("(Rabbit): - My name is of no importance. Know this : \n\
+I am but the guardian of this temple",0.03,0.2)
+        print("[riddles]")
+        riddles()
+    elif op == "ask" and met_owl == True:
+        typewriter(f"\n({name}): - I don't trust you. You have no heart. \n",0.03,0.2)
+        input("\n|enter|")
         
-print("Farewell...")
-
-
+    else:
+        print("\nINVALID INPUT")  
+        input("\n|enter|")  
+    
+ 
+def prologue():
+    met_owl = False
+    clear()
+    typewriter("it's 1990 and you sit in your bedroom \n\
+playing a text adventure game on your computer.\n\
+The rain drops on your window reflect the pale shade of the full moon.\n\
+you feel at ease...\n\
+As you begin your journey...",0.03,0.2)
+    input("\n|enter|")
+    clear()
+    typewriter("...",0.03,0.2)
+    typewriter("You walk the path of the pilgrim,in search of truth.\n\
+The unforgiving sun is ever watching,your feet are heavy and your lips dry.\n\
+You approach a lonely tree in this vast desert . It's shade is tempting. \n\
+What do you do? ",0.03,0.2)
+    print("\n[reach tree]\n[ignore tree]")
+    dir = input(">: ")
+    
+    if dir == "reach tree":
+        clear()
+        typewriter("\nAs you approach the tree it's shade embraces you\n\
+and a sudden breeze lifts the weight of your travel.\n\
+As you sit down,you begin to drift in and out of conciousness.\n\
+This tree seems special.",0.03,0.2)
+        input("\n|enter|")
+        typewriter("\nYour mind falls into a deep slumber...\n\
+you start to dream of lush lands,the sky is clear here and the sound\n\
+of a shy river can be heard.",0.03,0.2)
+        input("\n|enter|")
+        typewriter("\nYou see a great owl approaching...\n\
+You feel protected,this entity feels familiar.\n[greet owl] \n[remain silent]",0.03,0.2)
+        dec = input("\n>: ")
+        if dec == "greet owl" or dec == "remain silent":
+            typewriter("\nTraveler,a warning : beware the one who speaks in riddles\n\
+for it has no H E A R T...",0.03,0.2)
+            met_owl = True
+            input("\n|enter|")
+            typewriter("\nBefore you can say anything the great owl flies over you and fades\n\
+in the distance. This interaction was weird.You suddenly wake up. You feel refreshed",0.03,0.2)
+            input("\n|enter|")
+            clear()
+            typewriter("You resume your journey. \n\
+The sun is slowly setting and it's piercing rays are less heavier.\n\
+Your eyes begin to reflect the first blinks of the stars.\n\
+Upon a rocky structure there lies a temple.",0.03,0.2)
+            input("\n|enter|")
+            typewriter("...As you approach the temple you see a rabbit guarding the entrance.\n [talk]",0.03,0.2)
+            op = input("\n>: ")
+            if op == "talk":
+                rabbit(met_owl)
+        else:
+            print("invalid input! try again!")
+            input("\n|enter|")
+           
+    elif dir == "ignore tree":
+        clear()
+        typewriter("You are devouted to the road. \n\
+The sun is blazing the land,it's rays feel heavy.\n\
+Despite the harsh environment you keep going.\n\
+Upon a rocky structure there lies a temple,weirdly your heart skips a beat.",0.03,0.2)
+        input("\n|enter|")
+        typewriter("...As you approach the temple you see a rabbit guarding the entrance.\n [talk]",0.03,0.2)
+        op = input("\n>: ")
+        if op == "talk":
+            rabbit(met_owl)
+    else:
+        
+        print("INVALID INPUT! TRY AGAIN!")
+        prologue()
+     
+ 
+ 
+ 
+ 
+    
+while run:
+    while menu:
+        clear()
+        titlecard()
+        print("[1] NEW GAME")
+        print("[2] LOAD GAME")
+        print("[3] RULES")
+        print("[0] QUIT GAME")
+        
+        if rules:
+            clear()
+            drawline()
+            rulepage()
+            drawline()
+            rules = False
+            choice = ""
+            input("|enter| back ")
+        else:
+            choice = input(">: ")
+        
+        if choice == "1":
+            clear()
+            print(" WHAT IS YOUR NAME? ")
+            name = input(">: ")
+            menu = False
+            play = True
+        elif choice == "2":
+           try:
+                f = open("load.txt","r")
+                load_list = f.readlines()
+                if len(load_list) == 4:
+                    name = load_list[0][:-1]
+                    HP = load_list[1][:-1]
+                    WILL = load_list[2][:-1]
+                    pos = load_list[3][:-1]
+                    clear()
+                    drawline()
+                    print("LOAD SUCCESSFUL. PLEASE PRESS ENTER TO CONTINUE \n")
+                    #print(f"Welcome back, {name}\nyour stats are below : \n HP: {HP} \n will: {WILL}")
+                    drawline()
+                    input("|enter| continue ")
+                    menu = False
+                    play = True
+                else:
+                    print(" CORRUPT SAVE FILE! ")
+                    input("|enter| ")
+           except OSError:
+               print(" NO LOADABLE FILE AVAILABLE! START A NEW GAME PLEASE! ")
+               input("|enter| ")
+            
+        elif choice == "3":
+            rules = True
+        elif choice == "0":
+            quit()
+            
+     
+    
+    while play:
+        save()
+        clear()
+        drawline()
+        print(f"Welcome to these lands,{name}")
+        print("[1] BEGIN JOURNEY")
+        print("[0] SAVE AND QUIT TO MENU")
+        drawline()
+        option = input(">: ")
+        
+        if option == "0":
+            play = False
+            menu = True
+            save()
+        elif option == "1":
+            prologue()
 
 
 
