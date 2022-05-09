@@ -176,8 +176,8 @@ def rabbit(met_owl):
   .( o ).   \n\
      \n ",0.03,0.2)
     typewriter("    \n(Rabbit) :\n\
-    -O I welcome thee upon thy temple for which faith must be the key.\n\
-Answer minth riddles and I shall grant you entrance. \n [riddles] \n [talk]",0.03,0.2)
+    -O I welcome yee upon thy temple for which my bet must be the key.\n\
+Answer minth riddles and I shall grant you entrance. Fail to answer and your soul is mine \n [riddles] \n [talk]",0.03,0.2)
     op = input("\n>: ")
     if op == "riddles":
         riddles()
@@ -186,10 +186,20 @@ Answer minth riddles and I shall grant you entrance. \n [riddles] \n [talk]",0.0
         typewriter("(Rabbit): - My name is of no importance. Know this : \n\
 I am but the guardian of this temple",0.03,0.2)
         print("[riddles]")
-        riddles()
+        rd = input(">: ")
+        if rd == "riddles":
+         riddles()
+        else:
+            print("Invalid input! try again!")
+            
     elif op == "talk" and met_owl == True:
         typewriter(f"\n({name}): - I don't trust you. You have no heart. \n",0.03,0.2)
-        input("\n|enter|")
+        print("[riddles]")
+        rd = input(">: ")
+        if rd == "riddles":
+         riddles()
+        else:
+            print("Invalid input! try again!")
         
     else:
         print("\nINVALID INPUT")  
